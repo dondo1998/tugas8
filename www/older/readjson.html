@@ -1,0 +1,33 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="css/ionic.css">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var url = "https://cordova1.000webhostapp.com/www/json.php";
+        $.getJSON(url, function(result) {
+            console.log(result);
+            $.each(result, function(i, field) {
+                var id = field.id;
+                var nama = field.nama;
+                var harga = field.harga;
+                $("#listview").append("<a class='item' href='form.html?id=" + id + "&nama=" + nama + "&harga=" + harga + "'>   <h2>" + nama + " </h2><p>" + harga + "</p></a>");
+            });
+        });
+    });
+    </script>
+</head>
+
+<body>
+    <div class="bar bar-header bar-positive" style="margin-bottom:80px;">
+        <a href="index.html" class="button button-clear">Home</a>
+        <h1 class="title">Lihat Data Barang (JSON)</h1>
+    </div>
+    <br/>
+    <br/>
+    <ul class="list" id="listview">
+    </ul>
+</body>
+
+</html>
