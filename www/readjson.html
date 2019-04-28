@@ -1,0 +1,36 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="css/ionic.css">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var url = "https://dondo1998.000webhostapp.com/tugas8/www/json.php";
+        $.getJSON(url, function(result) {
+            console.log(result);
+            $.each(result, function(i, field) {
+                var id = field.id;
+                var nama = field.nama;
+                var harga = field.harga;
+                var jumlah = field.jumlah;
+                var nama_pelanggan = field.nama_pelanggan;
+                var no_meja = field.no_meja;
+                $("#listview").append("<a class='item' href='form.html?id=" + id + "&nama=" + nama + "&harga=" + harga + "&jumlah=" + jumlah + "&nama_pelanggan=" + nama_pelanggan + "&no_meja=" + no_meja + "'>   <h2>" + nama + " </h2><h2>" + harga + "</h2><h2>" + jumlah + "</h2><h2>" + nama_pelanggan + " </h2><h2>" + no_meja + " </h2></a>");
+            });
+        });
+    });
+    </script>
+</head>
+
+<body>
+    <div class="bar bar-header bar-positive" style="margin-bottom:80px;">
+        <a href="index.html" class="button button-clear">Home</a>
+        <h1 class="title">Lihat Data</h1>
+    </div>
+    <br/>
+    <br/>
+    <ul class="list" id="listview">
+    </ul>
+</body>
+
+</html>
