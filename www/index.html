@@ -1,0 +1,76 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="css/ionic.css">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $("#insert").click(function() {
+            var nama = $("#nama").val();
+            var harga = $("#harga").val();
+            var jumlah = $("#jumlah").val();
+            var nama_pelanggan = $("#nama_pelanggan").val();
+            var no_meja = $("#no_meja").val();
+            var dataString = "nama=" + nama + "&harga=" + harga + "&jumlah=" + jumlah + "&nama_pelanggan=" + nama_pelanggan + "&no_meja=" + no_meja + "&insert=";
+            if ($.trim(nama).length > 0 & $.trim(harga).length > 0 & $.trim(jumlah).length > 0 & $.trim(nama_pelanggan).length > 0 & $.trim(no_meja).length > 0) {
+                $.ajax({
+                    type: "POST",
+                    url: "https://dondo1998.000webhostapp.com/tugas8/www/insert.php",
+                    data: dataString,
+                    crossDomain: true,
+                    cache: false,
+                    beforeSend: function() {
+                        $("#insert").val('Connecting...');
+                    },
+                    success: function(data) {
+                        if (data == "success") {
+                            alert("Done");
+                            $("#insert").val('submit');
+                        } else if (data == "error") {
+                            alert("Try again");
+                        }
+                    }
+                });
+            }
+            return false;
+        });
+    });
+    </script>
+</head>
+
+<body>
+    <div class="bar bar-header bar-positive" style="margin-bottom:80px;">
+        <h1 class="title">Tambah Data</h1>
+        <a class="button button-clear" href="readjson.html">Lihat Data</a>
+    </div>
+    <br/>
+    <br/>
+    <div class="list">
+        <input type="hidden" id="id" value="" />
+        <div class="item">
+            <label>Nama Menu</label>
+            <input type="text" id="nama" value="" />
+        </div>
+        <div class="item">
+            <label>Harga Menu</label>
+            <input type="text" id="harga" value="" />
+        </div>
+        <div class="item">
+            <label>Jumlah Menu Yang Dipesan</label>
+            <input type="text" id="jumlah" value="" />
+        </div>
+        <div class="item">
+            <label>Nama Pelanggan</label>
+            <input type="text" id="nama_pelanggan" value="" />
+        </div>
+        <div class="item">
+            <label>Nomor Meja</label>
+            <input type="text" id="no_meja" value="" />
+        </div>
+        <div class="item">
+            <input type="button" id="insert" class="button button-block" value="Klik Disini" />
+        </div>
+    </div>
+</body>
+
+</html>
